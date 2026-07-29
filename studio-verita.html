@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Veritá — Perícias de Engenharia | Avaliações Imobiliárias</title>
+<meta name="description" content="Perícias judiciais de engenharia e avaliações imobiliárias conforme NBR 14.653. Atendimento a bancos, escritórios de advocacia e Poder Judiciário em Esteio, Vale do Sinos e Vale do Taquari.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --graphite:#2B2D42;
+  --graphite-2:#363A5C;
+  --graphite-3:#20223A;
+  --terracota:#D88C6A;
+  --terracota-deep:#BE6F4C;
+  --terracota-light:#F0C9B4;
+  --paper:#F4F5F7;
+  --paper-2:#EAEBEF;
+  --white:#FFFFFF;
+  --ink:#22243A;
+  --ink-soft:#5B5D78;
+  --line-on-light: rgba(43,45,66,0.14);
+  --line-on-dark: rgba(244,245,247,0.16);
+  --display: 'Montserrat', sans-serif;
+  --body: 'Inter', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --shadow-doc: 0 24px 60px -30px rgba(20,21,40,0.35);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+body{
+  font-family:var(--body);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit; cursor:pointer; border:none; background:none;}
+.container{max-width:1180px; margin:0 auto; padding:0 32px;}
+@media (max-width:640px){ .container{padding:0 20px;} }
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before{
+  content:"";
+  width:22px; height:1px; background:currentColor; opacity:0.55;
+}
+.eyebrow.terra{color:var(--terracota-deep);}
+.eyebrow.terra-on-dark{color:var(--terracota-light);}
+
+h1,h2,h3,h4{ font-family:var(--display); font-weight:700; letter-spacing:-0.01em; }
+
+.section{ padding:96px 0; }
+@media (max-width:900px){ .section{ padding:64px 0; } }
+.section-dark{ background:var(--graphite); color:var(--paper); }
+.section-head{ max-width:640px; margin-bottom:48px; }
+.section-head h2{ font-size:clamp(28px,3.4vw,40px); margin-top:14px; }
+.section-head p{ margin-top:16px; color:var(--ink-soft); font-size:16.5px; }
+.section-dark .section-head p{ color:rgba(244,245,247,0.72); }
+
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--display); font-weight:600; font-size:14.5px;
+  letter-spacing:0.01em;
+  padding:14px 26px; border-radius:2px;
+  transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+}
+.btn:active{ transform:scale(0.98); }
+.btn-primary{ background:var(--terracota); color:var(--graphite-3); }
+.btn-primary:hover{ background:var(--terracota-deep); color:var(--white); }
+.btn-ghost-dark{ border:1px solid rgba(244,245,247,0.32); color:var(--paper); }
+.btn-ghost-dark:hover{ border-color:var(--terracota); color:var(--terracota-light); }
+.btn-ghost-light{ border:1px solid var(--line-on-light); color:var(--graphite); }
+.btn-ghost-light:hover{ border-color:var(--terracota-deep); color:var(--terracota-deep); }
+
+/* ===== NAV ===== */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(43,45,66,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(244,245,247,0.1);
+}
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; height:76px; }
+.nav-brand{ display:flex; align-items:center; gap:12px; color:var(--paper); }
+.nav-brand img,
+.footer-brand img{ display:block; max-height:42px; width:auto; }
+.nav-brand-word{ font-family:var(--display); font-weight:700; font-size:15px; letter-spacing:0.02em; line-height:1.15; }
+.nav-brand-word span{ display:block; font-family:var(--mono); font-size:10px; letter-spacing:0.1em; color:rgba(244,245,247,0.55); font-weight:400; text-transform:uppercase; margin-top:2px;}
+.nav-links{ display:flex; align-items:center; gap:34px; }
+.nav-links a{
+  font-family:var(--display); font-size:13px; font-weight:600;
+  letter-spacing:0.03em; text-transform:uppercase; color:rgba(244,245,247,0.75);
+  position:relative; padding:6px 0;
+  transition:color .18s ease;
+}
+.nav-links a::after{
+  content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+  background:var(--terracota); transition:width .2s ease;
+}
+.nav-links a:hover{ color:var(--paper); }
+.nav-links a:hover::after{ width:100%; }
+.nav-cta{ display:flex; align-items:center; gap:22px; }
+.nav-cta .btn{ padding:11px 20px; font-size:13px; }
+.nav-toggle{ display:none; color:var(--paper); font-size:22px; }
+@media (max-width:900px){
+  .nav-links{ display:none; }
+  .nav-toggle{ display:block; }
+  .nav-cta .btn-primary{ padding:9px 16px; font-size:12.5px; }
+}@media (max-width:640px){
+  .nav-brand img,
+  .footer-brand img{ max-height:32px; width:auto; }
+}.nav-mobile{
+  display:none; flex-direction:column; gap:2px;
+  background:var(--graphite-3); border-top:1px solid rgba(244,245,247,0.1);
+}
+.nav-mobile.open{ display:flex; }
+.nav-mobile a{
+  padding:16px 20px; font-family:var(--display); font-weight:600; font-size:14px;
+  color:rgba(244,245,247,0.85); border-bottom:1px solid rgba(244,245,247,0.06);
+  text-transform:uppercase; letter-spacing:0.03em;
+}
+
+/* ===== HERO ===== */
+.hero{
+  background:
+    radial-gradient(ellipse 900px 500px at 82% -10%, rgba(216,140,106,0.16), transparent 60%),
+    var(--graphite);
+  color:var(--paper);
+  padding:168px 0 96px;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid rgba(244,245,247,0.08);
+}
+.hero-grid{
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(244,245,247,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244,245,247,0.035) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:linear-gradient(to bottom, black, transparent 85%);
+  pointer-events:none;
+}
+.hero-inner{
+  position:relative; display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+}
+@media (max-width:980px){ .hero-inner{ grid-template-columns:1fr; } }
+.hero-tag{ color:var(--terracota-light); }
+.hero h1{
+  font-size:clamp(34px,4.6vw,58px); line-height:1.08; margin-top:22px; letter-spacing:-0.015em;
+}
+.hero h1 em{ font-style:normal; color:var(--terracota); }
+.hero p.lead{
+  margin-top:24px; font-size:18px; max-width:520px; color:rgba(244,245,247,0.78); line-height:1.65;
+}
+.hero-actions{ display:flex; flex-wrap:wrap; gap:16px; margin-top:38px; }
+.hero-badges{ display:flex; flex-wrap:wrap; gap:28px; margin-top:56px; padding-top:32px; border-top:1px solid rgba(244,245,247,0.14); }
+.hero-badge{ display:flex; flex-direction:column; gap:4px; }
+.hero-badge b{ font-family:var(--mono); font-size:22px; color:var(--terracota-light); font-weight:600; }
+.hero-badge span{ font-size:12.5px; color:rgba(244,245,247,0.6); max-width:150px; }
+
+/* hero monogram art */
+.hero-art{ display:flex; justify-content:center; align-items:center; position:relative; }
+.hero-art svg,
+.hero-art img{ width:100%; max-width:380px; height:auto; }
+.hero-art img{ display:block; }
+.tick-anim{ stroke-dasharray:4 6; animation:dashmove 6s linear infinite; }
+@keyframes dashmove{ to{ stroke-dashoffset:-100; } }
+
+/* ===== MONOGRAM (shared) ===== */
+.mono-svg .mv-letter{ fill:var(--paper); }
+.mono-svg .mv-slash{ stroke:var(--terracota); }
+.mono-svg .mv-leg{ stroke:var(--paper); }
+.mono-svg .mv-bldg{ fill:var(--paper); }
+.mono-svg .mv-window{ fill:var(--terracota); }
+.nav-brand .mono-svg .mv-letter, .nav-brand .mono-svg .mv-leg, .nav-brand .mono-svg .mv-bldg{ fill:var(--paper); stroke:var(--paper); }
+.footer .mono-svg .mv-letter, .footer .mono-svg .mv-leg, .footer .mono-svg .mv-bldg{ fill:var(--paper); stroke:var(--paper); }
+.mono-dark .mv-letter, .mono-dark .mv-bldg{ fill:var(--graphite); }
+.mono-dark .mv-leg{ stroke:var(--graphite); }
+.mono-dark .mv-slash{ stroke:var(--terracota-deep); }
+.mono-dark .mv-window{ fill:var(--terracota-deep); }
+
+/* ===== QUEM SOMOS — DOCUMENTO ===== */
+.doc-wrap{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start; }
+@media (max-width:980px){ .doc-wrap{ grid-template-columns:1fr; } }
+.doc-intro p{ color:var(--ink-soft); font-size:16.5px; margin-top:16px; }
+.doc-intro p + p{ margin-top:14px; }
+.doc-stats{ display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:36px; background:var(--line-on-light); border:1px solid var(--line-on-light); }
+.doc-stat{ background:var(--paper); padding:20px 22px; }
+.doc-stat b{ font-family:var(--mono); font-size:26px; color:var(--graphite); display:block; }
+.doc-stat span{ font-size:12.5px; color:var(--ink-soft); }
+
+.doc-card{
+  background:var(--white); border:1px solid var(--line-on-light);
+  box-shadow:var(--shadow-doc);
+  position:relative;
+}
+.doc-card::before{
+  content:""; position:absolute; top:14px; left:14px; right:14px; bottom:14px;
+  border:1px solid var(--line-on-light); pointer-events:none;
+}
+.doc-header{
+  display:flex; justify-content:space-between; align-items:flex-start;
+  padding:28px 30px 20px; border-bottom:1px solid var(--line-on-light);
+}
+.doc-header .doc-no{ font-family:var(--mono); font-size:12px; color:var(--ink-soft); letter-spacing:0.04em; }
+.doc-header h3{ font-size:19px; margin-top:8px; letter-spacing:0.01em; }
+.doc-header .doc-stamp-mini{ width:52px; height:52px; opacity:0.85; }
+.doc-body{ padding:28px 30px 8px; }
+.doc-article{ padding:20px 0; border-bottom:1px solid var(--line-on-light); }
+.doc-article:last-of-type{ border-bottom:none; }
+.doc-article-label{
+  font-family:var(--mono); font-size:11.5px; color:var(--terracota-deep);
+  text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px; display:block;
+}
+.doc-article h4{ font-size:16px; font-weight:600; margin-bottom:8px; }
+.doc-article p{ font-size:15px; color:var(--ink-soft); }
+.doc-values{ margin-top:10px; }
+.doc-values li{ font-size:15px; color:var(--ink-soft); padding:7px 0 7px 20px; position:relative; }
+.doc-values li::before{ content:"—"; position:absolute; left:0; color:var(--terracota-deep); font-family:var(--mono); }
+.doc-values b{ color:var(--ink); font-weight:600; }
+.doc-footer{
+  display:flex; justify-content:space-between; align-items:center; gap:16px;
+  padding:20px 30px 28px; font-family:var(--mono); font-size:11.5px; color:var(--ink-soft);
+}
+.doc-footer .doc-sig{ display:flex; flex-direction:column; gap:4px; }
+.doc-footer .doc-sig b{ color:var(--ink); font-family:var(--body); font-weight:600; font-size:13px; }
+
+/* ===== SERVICOS ===== */
+.tabs-bar{ display:flex; gap:0; border-bottom:1px solid var(--line-on-light); margin-bottom:0; flex-wrap:wrap; }
+.tab-btn{
+  font-family:var(--display); font-weight:600; font-size:14.5px;
+  padding:16px 26px; color:var(--ink-soft); position:relative;
+  border:1px solid var(--line-on-light); border-bottom:none;
+  background:var(--paper-2); margin-right:6px; margin-bottom:-1px;
+  transition:color .18s ease, background .18s ease;
+}
+.tab-btn.active{ color:var(--graphite); background:var(--white); border-bottom:1px solid var(--white); }
+.tab-btn:hover:not(.active){ color:var(--terracota-deep); }
+.tab-panels{ background:var(--white); border:1px solid var(--line-on-light); padding:44px; }
+@media (max-width:640px){ .tab-panels{ padding:28px 22px; } .tab-btn{ padding:13px 16px; font-size:13px; } }
+.tab-panel{ display:none; }
+.tab-panel.active{ display:block; animation:fadein .35s ease; }
+@keyframes fadein{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+.tab-panel-grid{ display:grid; grid-template-columns:1fr 1fr; gap:36px; }
+@media (max-width:760px){ .tab-panel-grid{ grid-template-columns:1fr; } }
+.svc-item{ padding:20px 0; border-bottom:1px solid var(--line-on-light); }
+.svc-item:nth-last-child(-n+1){ border-bottom:none; }
+.svc-item h4{ font-size:16px; font-weight:600; margin-bottom:6px; display:flex; align-items:baseline; gap:10px;}
+.svc-item h4 .num{ font-family:var(--mono); font-size:12px; color:var(--terracota-deep); }
+.svc-item p{ font-size:14.5px; color:var(--ink-soft); }
+
+.svc-complementares{ margin-top:56px; }
+.svc-complementares h3{ font-size:20px; margin-bottom:24px; }
+.svc-comp-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line-on-light); border:1px solid var(--line-on-light); }
+@media (max-width:760px){ .svc-comp-grid{ grid-template-columns:1fr; } }
+.svc-comp-card{ background:var(--paper); padding:26px 24px; }
+.svc-comp-card h5{ font-family:var(--display); font-size:14.5px; font-weight:700; margin-bottom:10px; }
+.svc-comp-card p{ font-size:13.8px; color:var(--ink-soft); }
+
+/* ===== DIFERENCIAIS ===== */
+.dif-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:rgba(244,245,247,0.12); border:1px solid rgba(244,245,247,0.12); }
+@media (max-width:980px){ .dif-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:520px){ .dif-grid{ grid-template-columns:1fr; } }
+.dif-card{ background:var(--graphite); padding:34px 26px; transition:background .25s ease; }
+.dif-card:hover{ background:var(--graphite-2); }
+.dif-icon{ width:40px; height:40px; margin-bottom:22px; }
+.dif-card h4{ font-size:16px; color:var(--paper); margin-bottom:10px; }
+.dif-card p{ font-size:13.8px; color:rgba(244,245,247,0.62); }
+
+/* ===== ABRANGENCIA ===== */
+.route{ display:flex; flex-direction:column; gap:0; margin-top:12px; }
+.route-item{
+  display:grid; grid-template-columns:120px 1fr auto; gap:24px; align-items:center;
+  padding:26px 0; border-bottom:1px solid var(--line-on-light); position:relative;
+}
+.route-item:last-child{ border-bottom:none; }
+.route-tag{ font-family:var(--mono); font-size:12px; color:var(--terracota-deep); letter-spacing:0.05em; text-transform:uppercase; }
+.route-node{ position:relative; padding-left:26px; }
+.route-node::before{
+  content:""; position:absolute; left:0; top:6px; width:10px; height:10px; border-radius:50%;
+  background:var(--terracota); box-shadow:0 0 0 4px rgba(216,140,106,0.18);
+}
+.route-node h4{ font-size:17.5px; margin-bottom:4px; }
+.route-node p{ font-size:14px; color:var(--ink-soft); }
+.route-mode{ font-family:var(--mono); font-size:12px; color:var(--ink-soft); text-align:right; max-width:190px; justify-self:end; }
+@media (max-width:760px){
+  .route-item{ grid-template-columns:1fr; gap:8px; }
+  .route-mode{ text-align:left; justify-self:start; max-width:none; }
+}
+
+/* ===== PROCESSO ===== */
+.process{ display:flex; gap:0; overflow-x:auto; padding-bottom:12px; margin-top:12px;}
+.process-step{
+  flex:1 1 0; min-width:190px; padding:0 22px 0 0; position:relative;
+}
+.process-step:not(:last-child)::after{
+  content:""; position:absolute; top:22px; right:0; width:22px; height:1px; background:var(--line-on-light);
+}
+.process-step .step-no{ font-family:var(--mono); font-size:12px; color:var(--terracota-deep); }
+.process-dot{ width:44px; height:44px; border:1px solid var(--graphite); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:13px; margin:12px 0 18px; color:var(--graphite);}
+.process-step h4{ font-size:14.5px; margin-bottom:8px; line-height:1.35; }
+.process-step .loc{
+  display:inline-block; font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:0.05em;
+  padding:4px 9px; border:1px solid var(--line-on-light); color:var(--ink-soft);
+}
+.process-step .loc.presencial{ border-color:var(--terracota); color:var(--terracota-deep); }
+@media (max-width:900px){
+  .process{ flex-direction:column; }
+  .process-step{ padding:0 0 30px 0; }
+  .process-step:not(:last-child)::after{ top:auto; bottom:6px; left:22px; right:auto; width:1px; height:24px; }
+}
+
+/* ===== CREDENCIAIS ===== */
+.cred-wrap{ display:grid; grid-template-columns:1.3fr 0.7fr; gap:56px; align-items:center; }
+@media (max-width:900px){ .cred-wrap{ grid-template-columns:1fr; } }
+.cred-table{ width:100%; border-collapse:collapse; }
+.cred-table tr{ border-bottom:1px solid rgba(244,245,247,0.14); }
+.cred-table tr:last-child{ border-bottom:none; }
+.cred-table td{ padding:20px 0; font-size:15px; }
+.cred-table td:first-child{ color:rgba(244,245,247,0.55); width:46%; font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:0.04em; }
+.cred-table td:last-child{ color:var(--paper); font-weight:500; }
+.stamp-wrap{ display:flex; justify-content:center; }
+.stamp{ width:220px; height:220px; transform:rotate(-9deg); }
+.stamp-anim{ animation:stamppulse 5s ease-in-out infinite; transform-origin:center; }
+@keyframes stamppulse{ 0%,100%{ opacity:0.9; } 50%{ opacity:1; } }
+
+/* ===== CONTATO ===== */
+.contact-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+@media (max-width:900px){ .contact-wrap{ grid-template-columns:1fr; } }
+.contact-card{ background:var(--white); border:1px solid var(--line-on-light); padding:40px; }
+.contact-card h3{ font-size:20px; margin-bottom:20px; }
+.contact-row{ display:flex; justify-content:space-between; gap:16px; padding:16px 0; border-bottom:1px solid var(--line-on-light); font-size:14.5px; }
+.contact-row:last-child{ border-bottom:none; }
+.contact-row span:first-child{ color:var(--ink-soft); font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:0.04em; }
+.contact-row a{ color:var(--terracota-deep); font-weight:600; }
+.contact-row a:hover{ text-decoration:underline; }
+.contact-cta-box{ background:var(--graphite); color:var(--paper); padding:40px; }
+.contact-cta-box h3{ font-size:22px; margin-bottom:14px; }
+.contact-cta-box p{ color:rgba(244,245,247,0.7); font-size:15px; margin-bottom:28px; }
+
+/* ===== FOOTER ===== */
+.footer{ background:var(--graphite-3); color:rgba(244,245,247,0.55); padding:48px 0 32px; }
+.footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; }
+.footer-brand{ display:flex; align-items:center; gap:12px; }
+.footer-brand span{ font-family:var(--display); font-weight:700; font-size:14px; color:var(--paper); }
+.footer-tag{ font-family:var(--mono); font-size:11.5px; letter-spacing:0.03em; }
+.footer-bottom{ margin-top:32px; padding-top:24px; border-top:1px solid rgba(244,245,247,0.08); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:var(--mono); font-size:11px; }
+
+/* reveal on scroll */
+.reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+/* focus visibility */
+a:focus-visible, button:focus-visible{ outline:2px solid var(--terracota); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#topo" class="nav-brand">
+      <img src="logo.png" alt="Studio Veritá" width="140" height="38">
+    </a>
+    <nav class="nav-links">
+      <a href="#quem-somos">Quem somos</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#abrangencia">Abrangência</a>
+      <a href="#credenciais">Credenciais</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contato" class="btn btn-primary">Solicitar proposta</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#quem-somos">Quem somos</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#abrangencia">Abrangência</a>
+    <a href="#credenciais">Credenciais</a>
+    <a href="#contato">Contato</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="topo">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div>
+      <p class="eyebrow hero-tag">Perícias e Avaliações · Engenharia Civil</p>
+      <h1>Verdade técnica<br>com respaldo <em>normativo</em>.</h1>
+      <p class="lead">Perícias judiciais e avaliações imobiliárias conduzidas com rigor, imparcialidade e agilidade — para bancos, escritórios de advocacia e o Poder Judiciário na Grande Porto Alegre, Vale do Sinos e Vale do Taquari.</p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn btn-primary">Solicitar proposta</a>
+        <a href="#credenciais" class="btn btn-ghost-dark">Ver credenciais</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge"><b>19 anos</b><span>de atuação técnica consolidada</span></div>
+        <div class="hero-badge"><b>CREA-RS</b><span>registro ativo, ART em todo trabalho</span></div>
+        <div class="hero-badge"><b>NBR 14.653</b><span>metodologia e diretrizes IBAPE</span></div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <img src="logo.png" alt="Studio Veritá" class="hero-logo">
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUEM SOMOS ============ -->
+<section class="section" id="quem-somos">
+  <div class="container">
+    <div class="doc-wrap">
+      <div class="doc-intro reveal">
+        <p class="eyebrow terra">Quem somos</p>
+        <h2>Uma trajetória técnica, hoje com identidade própria.</h2>
+        <p>A Studio Veritá — Perícias de Engenharia | Avaliações Imobiliárias é uma empresa de engenharia civil especializada em perícias judiciais e avaliações imobiliárias, sediada em Esteio/RS e atuante na Região Metropolitana de Porto Alegre, no Vale do Sinos e no Vale do Taquari.</p>
+        <p>A marca nasce de 19 anos de experiência técnica acumulada, consolidando uma trajetória individual em uma estrutura profissional voltada a instituições que dependem de laudos robustos para embasar decisões — de crédito ou de justiça.</p>
+        <div class="doc-stats">
+          <div class="doc-stat"><b>19</b><span>anos de atuação em perícia e avaliação</span></div>
+          <div class="doc-stat"><b>3</b><span>regiões de cobertura estruturada</span></div>
+          <div class="doc-stat"><b>NBR 14.653</b><span>metodologia normativa aplicada</span></div>
+          <div class="doc-stat"><b>100%</b><span>laudos com ART emitida</span></div>
+        </div>
+      </div>
+
+      <div class="doc-card reveal">
+        <div class="doc-header">
+          <div>
+            <span class="doc-no">PARECER Nº SV-01/2026 · IDENTIDADE ORGANIZACIONAL</span>
+            <h3>Sobre a Studio Veritá</h3>
+          </div>
+          <svg class="doc-stamp-mini" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="#D88C6A" stroke-width="1.5" stroke-dasharray="2 3"/><circle cx="50" cy="50" r="34" fill="none" stroke="#2B2D42" stroke-width="1"/><text x="50" y="54" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#2B2D42" font-weight="600">S/V</text></svg>
+        </div>
+        <div class="doc-body">
+          <div class="doc-article">
+            <span class="doc-article-label">Do objeto — missão</span>
+            <h4>Verdade técnica a serviço de decisões justas</h4>
+            <p>Produzir perícias judiciais e avaliações imobiliárias com rigor técnico-normativo, imparcialidade e linguagem acessível às partes, contribuindo para decisões judiciais e financeiras mais justas e seguras.</p>
+          </div>
+          <div class="doc-article">
+            <span class="doc-article-label">Dos fundamentos — valores</span>
+            <ul class="doc-values">
+              <li><b>Rigor técnico</b> — aderência estrita à NBR 14.653 e às normas do CREA/CONFEA e IBAPE em cada laudo.</li>
+              <li><b>Imparcialidade</b> — o laudo reporta o que a norma e a evidência demonstram, independentemente da parte solicitante.</li>
+              <li><b>Experiência</b> — 19 anos de atuação técnica sustentando a credibilidade da marca.</li>
+              <li><b>Confiança</b> — relação transparente e previsível com clientes, varas e instituições financeiras.</li>
+            </ul>
+          </div>
+          <div class="doc-article">
+            <span class="doc-article-label">Da conclusão — visão</span>
+            <p>Ser reconhecida como referência regional em perícia de engenharia e avaliação imobiliária na Grande Porto Alegre, Vale do Sinos e Vale do Taquari, sustentada por um modelo de atuação digital, ágil e tecnicamente rigoroso.</p>
+          </div>
+        </div>
+        <div class="doc-footer">
+          <span>Esteio/RS — Julho de 2026</span>
+          <div class="doc-sig">
+            <b>Studio Veritá</b>
+            <span>CREA-RS · ART em todos os trabalhos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICOS ============ -->
+<section class="section" id="servicos" style="background:var(--paper-2);">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow terra">Serviços</p>
+      <h2>Duas frentes, um mesmo padrão técnico.</h2>
+      <p>Laudos e pareceres estruturados para as necessidades específicas de instituições financeiras e de escritórios de advocacia — sempre sob a mesma metodologia normativa.</p>
+    </div>
+
+    <div class="reveal">
+      <div class="tabs-bar" role="tablist">
+        <button class="tab-btn active" data-tab="bancos" role="tab" aria-selected="true">Instituições financeiras</button>
+        <button class="tab-btn" data-tab="advocacia" role="tab" aria-selected="false">Escritórios de advocacia</button>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel active" id="panel-bancos">
+          <div class="tab-panel-grid">
+            <div class="svc-item">
+              <h4><span class="num">01</span>Avaliação para garantia de crédito</h4>
+              <p>Conforme NBR 14.653, com metodologia comparativa de mercado e tratamento estatístico de dados.</p>
+            </div>
+            <div class="svc-item">
+              <h4><span class="num">02</span>Due diligence técnica imobiliária</h4>
+              <p>Análise de risco em operações de financiamento e aquisição de ativos, para bancos e incorporadoras.</p>
+            </div>
+            <div class="svc-item">
+              <h4><span class="num">03</span>Laudos padronizados</h4>
+              <p>Compatíveis com exigências de painéis de avaliadores — Caixa Econômica Federal, Banco do Brasil e bancos privados.</p>
+            </div>
+            <div class="svc-item">
+              <h4><span class="num">04</span>Avaliação de imóveis rurais e urbanos</h4>
+              <p>Cobertura em três regiões de perfil econômico distinto, da indústria ao agronegócio.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tab-panel" id="panel-advocacia">
+          <div class="tab-panel-grid">
+            <div class="svc-item">
+              <h4><span class="num">01</span>Perícia judicial de engenharia</h4>
+              <p>Ações cíveis, de família e trabalhistas com componente técnico imobiliário ou construtivo.</p>
+            </div>
+            <div class="svc-item">
+              <h4><span class="num">02</span>Assistência técnica das partes</h4>
+              <p>Elaboração de pareceres divergentes, quesitos e resposta técnica a impugnações periciais.</p>
+            </div>
+            <div class="svc-item">
+              <h4><span class="num">03</span>Inspeções prediais e laudos de vistoria</h4>
+              <p>Instrução de processos possessórios, de vizinhança e indenizatórios.</p>
+            </div>
+            <div class="svc-item">
+              <h4><span class="num">04</span>Nomeação como perito judicial</h4>
+              <p>Cadastro ativo no TJRS / sistema eproc para nomeações em comarcas das três regiões de atuação.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-complementares reveal">
+      <h3>Serviços complementares</h3>
+      <div class="svc-comp-grid">
+        <div class="svc-comp-card">
+          <h5>Pré-avaliação documental</h5>
+          <p>Análise preliminar a partir de documentação e roteiro fotográfico, usada para triagem e precificação — sem substituir a vistoria presencial exigida no laudo final.</p>
+        </div>
+        <div class="svc-comp-card">
+          <h5>Mediação técnica extrajudicial</h5>
+          <p>Pareceres técnicos para desjudicialização de conflitos entre vizinhos, condomínios e construtoras, com atendimento remoto.</p>
+        </div>
+        <div class="svc-comp-card">
+          <h5>Due diligence para incorporadoras</h5>
+          <p>Avaliação técnica de ativos imobiliários antes de aquisições, para incorporadoras e fundos imobiliários.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIFERENCIAIS ============ -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow terra-on-dark">Por que a Studio Veritá</p>
+      <h2>Precisão que reduz risco — para quem decide com base no laudo.</h2>
+    </div>
+  </div>
+  <div class="dif-grid reveal">
+    <div class="dif-card">
+      <svg class="dif-icon" viewBox="0 0 40 40" fill="none" stroke="#D88C6A" stroke-width="1.6"><circle cx="20" cy="20" r="15"/><path d="M20 12v8l6 4"/></svg>
+      <h4>Experiência consolidada</h4>
+      <p>19 anos de atuação técnica reduzem o risco de impugnação e aumentam a taxa de aceitação dos laudos.</p>
+    </div>
+    <div class="dif-card">
+      <svg class="dif-icon" viewBox="0 0 40 40" fill="none" stroke="#D88C6A" stroke-width="1.6"><circle cx="14" cy="14" r="4"/><circle cx="26" cy="14" r="4"/><circle cx="20" cy="28" r="4"/><path d="M14 18v4M26 18v4"/></svg>
+      <h4>Cobertura regional ampliada</h4>
+      <p>Atuação estruturada em Esteio, Vale do Sinos e Vale do Taquari — três frentes de atendimento.</p>
+    </div>
+    <div class="dif-card">
+      <svg class="dif-icon" viewBox="0 0 40 40" fill="none" stroke="#D88C6A" stroke-width="1.6"><rect x="8" y="10" width="24" height="17" rx="1"/><path d="M14 32h12M20 27v5"/></svg>
+      <h4>Modelo digital e ágil</h4>
+      <p>Videochamada, assinatura digital e entrega eletrônica reduzem prazos sem abrir mão do rigor técnico.</p>
+    </div>
+    <div class="dif-card">
+      <svg class="dif-icon" viewBox="0 0 40 40" fill="none" stroke="#D88C6A" stroke-width="1.6"><path d="M20 8l11 5v8c0 8-5 13-11 15C14 34 9 29 9 21v-8z"/><path d="M15 20l4 4 7-8"/></svg>
+      <h4>Conformidade normativa</h4>
+      <p>Aplicação estrita da NBR 14.653 e das diretrizes do IBAPE em cada avaliação e cada laudo pericial.</p>
+    </div>
+    <div class="dif-card">
+      <svg class="dif-icon" viewBox="0 0 40 40" fill="none" stroke="#D88C6A" stroke-width="1.6"><path d="M8 28l7-9 6 5 9-12"/><path d="M24 12h6v6"/></svg>
+      <h4>Comunicação clara</h4>
+      <p>Laudos redigidos para serem compreendidos por decisores não técnicos, agilizando aprovações e sentenças.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABRANGENCIA ============ -->
+<section class="section" id="abrangencia">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow terra">Área de abrangência</p>
+      <h2>Rota regional fixa, atendimento sem fronteira digital.</h2>
+      <p>A vistoria técnica é presencial por exigência normativa; toda a análise, redação do laudo e atendimento seguem em regime remoto — o que permite cobrir três regiões sem perder agilidade.</p>
+    </div>
+
+    <div class="route reveal">
+      <div class="route-item">
+        <span class="route-tag">Base</span>
+        <div class="route-node"><h4>RMPA / Esteio</h4><p>Esteio, Canoas, Sapucaia do Sul</p></div>
+        <span class="route-mode">Presencial no dia fixo semanal + remoto</span>
+      </div>
+      <div class="route-item">
+        <span class="route-tag">Região II</span>
+        <div class="route-node"><h4>Vale do Sinos</h4><p>São Leopoldo, Novo Hamburgo, Campo Bom</p></div>
+        <span class="route-mode">Presencial em rota regional</span>
+      </div>
+      <div class="route-item">
+        <span class="route-tag">Região III</span>
+        <div class="route-node"><h4>Vale do Taquari</h4><p>Lajeado, Estrela, Teutônia, Encantado, Arroio do Meio</p></div>
+        <span class="route-mode">Presencial em rota regional alternada</span>
+      </div>
+      <div class="route-item">
+        <span class="route-tag">Sob demanda</span>
+        <div class="route-node"><h4>Demais regiões do RS</h4><p>Mediante agenda</p></div>
+        <span class="route-mode">Vistoria agendada + laudo em home office</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESSO ============ -->
+<section class="section" style="background:var(--paper-2);">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow terra">Como trabalhamos</p>
+      <h2>Do pedido ao laudo assinado.</h2>
+      <p>Apenas a vistoria técnica exige presença física — todas as demais etapas seguem em home office, com entrega eletrônica e assinatura digital.</p>
+    </div>
+    <div class="process reveal">
+      <div class="process-step">
+        <span class="step-no">01</span>
+        <div class="process-dot">01</div>
+        <h4>Nomeação / contratação e pré-triagem</h4>
+        <span class="loc">Home office</span>
+      </div>
+      <div class="process-step">
+        <span class="step-no">02</span>
+        <div class="process-dot">02</div>
+        <h4>Vistoria técnica em rota regional</h4>
+        <span class="loc presencial">Presencial</span>
+      </div>
+      <div class="process-step">
+        <span class="step-no">03</span>
+        <div class="process-dot">03</div>
+        <h4>Pesquisa de mercado e tratamento de dados</h4>
+        <span class="loc">Home office</span>
+      </div>
+      <div class="process-step">
+        <span class="step-no">04</span>
+        <div class="process-dot">04</div>
+        <h4>Elaboração do laudo</h4>
+        <span class="loc">Home office</span>
+      </div>
+      <div class="process-step">
+        <span class="step-no">05</span>
+        <div class="process-dot">05</div>
+        <h4>Entrega, assinatura digital e resposta a quesitos</h4>
+        <span class="loc">Remoto</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CREDENCIAIS ============ -->
+<section class="section section-dark" id="credenciais">
+  <div class="container">
+    <div class="cred-wrap">
+      <div class="reveal">
+        <p class="eyebrow terra-on-dark">Credenciais e conformidade</p>
+        <h2 style="margin-top:14px; font-size:clamp(26px,3vw,36px);">Cada laudo, respaldado por registro e norma.</h2>
+        <table class="cred-table">
+          <tr><td>Registro CREA-RS</td><td>Ativo, com emissão de ART em todos os trabalhos</td></tr>
+          <tr><td>TJRS / sistema eproc</td><td>Cadastro ativo para nomeações judiciais</td></tr>
+          <tr><td>Metodologia de avaliação</td><td>Conforme NBR 14.653 e diretrizes do IBAPE</td></tr>
+          <tr><td>Experiência profissional</td><td>19 anos em perícia de engenharia e avaliação imobiliária</td></tr>
+        </table>
+      </div>
+      <div class="stamp-wrap reveal">
+        <svg class="stamp stamp-anim" viewBox="0 0 200 200">
+          <defs>
+            <path id="circlePathTop" d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0"/>
+          </defs>
+          <circle cx="100" cy="100" r="92" fill="none" stroke="#D88C6A" stroke-width="1" stroke-dasharray="1 5"/>
+          <circle cx="100" cy="100" r="78" fill="none" stroke="#D88C6A" stroke-width="1.4"/>
+          <circle cx="100" cy="100" r="58" fill="none" stroke="#F4F5F7" stroke-width="1" opacity="0.5"/>
+          <text font-family="IBM Plex Mono" font-size="9.4" letter-spacing="3" fill="#D88C6A">
+            <textPath href="#circlePathTop" startOffset="2%">STUDIO VERITÁ · PERÍCIAS E AVALIAÇÕES ·</textPath>
+          </text>
+          <text x="100" y="94" text-anchor="middle" font-family="Montserrat" font-weight="700" font-size="22" fill="#F4F5F7">S/V</text>
+          <text x="100" y="114" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" letter-spacing="1.5" fill="rgba(244,245,247,0.6)">CREA-RS · ART</text>
+          <text x="100" y="128" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" letter-spacing="1.5" fill="rgba(244,245,247,0.45)">ASSINATURA ICP-BRASIL</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section class="section" id="contato">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow terra">Contato</p>
+      <h2>Solicite proposta ou credenciamento.</h2>
+      <p>Para credenciamento como avaliador, indicação para nomeações judiciais, ou solicitação de proposta comercial, a Studio Veritá está à disposição pelos canais abaixo.</p>
+    </div>
+    <div class="contact-wrap reveal">
+      <div class="contact-card">
+        <h3>Canais diretos</h3>
+        <div class="contact-row"><span>Empresa</span><span>Studio Veritá</span></div>
+        <div class="contact-row"><span>Área de atuação</span><span>Esteio/RS · RMPA · Vale do Sinos · Vale do Taquari</span></div>
+        <div class="contact-row"><span>E-mail</span><a href="mailto:contato@studioverita.com.br">contato@studioverita.com.br</a></div>
+        <div class="contact-row"><span>Site</span><a href="https://www.studioverita.com.br" target="_blank" rel="noopener">www.studioverita.com.br</a></div>
+        <div class="contact-row"><span>LinkedIn</span><a href="https://linkedin.com/company/studio-verita" target="_blank" rel="noopener">/company/studio-verita</a></div>
+      </div>
+      <div class="contact-cta-box">
+        <h3>Pronto para uma proposta técnica sob medida?</h3>
+        <p>Envie o objeto do trabalho, a comarca ou região e o prazo desejado — a resposta chega com escopo e honorários estimados.</p>
+        <a href="mailto:contato@studioverita.com.br?subject=Solicitação%20de%20proposta%20-%20Studio%20Verit%C3%A1" class="btn btn-primary">Solicitar proposta por e-mail</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Studio Veritá" width="120" height="32">
+      </div>
+      <p class="footer-tag">PRECISÃO TÉCNICA · IMPARCIALIDADE · A SERVIÇO DA VERDADE</p>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Studio Veritá — Perícias de Engenharia | Avaliações Imobiliárias</span>
+      <span>Esteio/RS · CREA-RS · NBR 14.653 / IBAPE</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var toggle = document.getElementById('navToggle');
+  var mobile = document.getElementById('navMobile');
+  toggle.addEventListener('click', function(){
+    var open = mobile.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mobile.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ mobile.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); });
+  });
+
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  tabBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabBtns.forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals = document.querySelectorAll('.reveal');
+  if(prefersReduced){
+    reveals.forEach(function(el){ el.classList.add('is-visible'); });
+  } else if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+})();
+</script>
+</body>
+</html>
